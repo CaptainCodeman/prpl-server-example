@@ -1,0 +1,76 @@
+project: captain-codeman
+service: prpl
+version: example
+runtime: go
+api_version: go1.8
+
+instance_class: F1
+
+automatic_scaling:
+  max_concurrent_requests: 24
+  min_idle_instances: automatic
+  max_idle_instances: 1
+  min_pending_latency: 15s
+  max_pending_latency: automatic
+
+handlers:
+- url: /20170806/es5-bundled/index.html
+  script: _go_app
+  secure: always
+
+- url: /20170806/es6-bundled/index.html
+  script: _go_app
+  secure: always
+
+- url: /20170806/es6-unbundled/index.html
+  script: _go_app
+  secure: always
+
+- url: /20170806/es5-bundled/service-worker.js
+  static_files: static/es5-bundled/service-worker.js
+  upload: static/es5-bundled/service-worker.js
+  secure: always
+  http_headers:
+    Cache-Control: "private, max-age=0, must-revalidate"
+    Service-Worker-Allowed: "/"
+
+- url: /20170806/es6-bundled/service-worker.js
+  static_files: static/es6-bundled/service-worker.js
+  upload: static/es6-bundled/service-worker.js
+  secure: always
+  http_headers:
+    Cache-Control: "private, max-age=0, must-revalidate"
+    Service-Worker-Allowed: "/"
+
+- url: /20170806/es6-unbundled/service-worker.js
+  static_files: static/es6-unbundled/service-worker.js
+  upload: static/es6-unbundled/service-worker.js
+  secure: always
+  http_headers:
+    Cache-Control: "private, max-age=0, must-revalidate"
+    Service-Worker-Allowed: "/"  
+
+- url: /20170806/es5-bundled/
+  static_dir: static/es5-bundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=31536000, immutable"
+
+- url: /20170806/es6-bundled/
+  static_dir: static/es6-bundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=31536000, immutable"
+
+- url: /20170806/es6-unbundled/
+  static_dir: static/es6-unbundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=31536000, immutable"
+
+- url: /.*
+  script: _go_app
+  secure: always
