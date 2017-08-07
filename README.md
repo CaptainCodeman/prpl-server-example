@@ -6,6 +6,9 @@ A basic Polymer Starter Kit with a few slight optimizations to test the [prpl-se
 
 * Polymer-cli
 * AppEngine SDK for Go
+* PRPL-Server-Go
+
+    go get -i github.com/captaincodeman/prpl-server-go
 
 ## Usage
 
@@ -36,3 +39,9 @@ From server folder, run:
     goapp deploy .
 
 NOTE: you won't be able to deploy unless you change the project id to your own. Alternatively, you can remove these and use the `gcloud` command (see server rep for details)
+
+### Standalone
+
+The prpl-server can also be run standalone:
+
+    prpl-server --root static --config static/polymer.json
