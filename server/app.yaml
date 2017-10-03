@@ -50,27 +50,9 @@ handlers:
     Cache-Control: "private, max-age=0, must-revalidate"
     Service-Worker-Allowed: "/"  
 
-- url: /20170806/es5-bundled/
-  static_dir: static/es5-bundled/
-  application_readable: true
-  secure: always
-  http_headers:
-    Cache-Control: "public, max-age=31536000, immutable"
-
-- url: /20170806/es6-bundled/
-  static_dir: static/es6-bundled/
-  application_readable: true
-  secure: always
-  http_headers:
-    Cache-Control: "public, max-age=31536000, immutable"
-
-- url: /20170806/es6-unbundled/
-  static_dir: static/es6-unbundled/
-  application_readable: true
-  secure: always
-  http_headers:
-    Cache-Control: "public, max-age=31536000, immutable"
-
 - url: /.*
   script: _go_app
   secure: always
+
+env_variables:
+  STATIC_VERSION: 20170806

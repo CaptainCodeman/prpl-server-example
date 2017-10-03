@@ -22,6 +22,18 @@ From server folder, run:
 
     ln -s ../build static
 
+### Generate app.yaml
+
+Generate prpl-server config:
+
+    prpl-config --root static \
+                --config polymer.json \
+                --static-version 20170815 \
+                --project-id captain-codeman \
+                --project-service prpl \
+                --project-version example \
+                --template app.yaml.tmpl > app.yaml
+
 ### Run
 
 From server folder, run:
