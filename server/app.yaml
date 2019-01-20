@@ -14,45 +14,54 @@ automatic_scaling:
   max_pending_latency: automatic
 
 handlers:
-- url: /20170806/es5-bundled/index.html
-  script: _go_app
-  secure: always
-
-- url: /20170806/es6-bundled/index.html
-  script: _go_app
-  secure: always
-
-- url: /20170806/es6-unbundled/index.html
-  script: _go_app
-  secure: always
-
-- url: /20170806/es5-bundled/service-worker.js
+- url: /es5-bundled/service-worker.js
   static_files: static/es5-bundled/service-worker.js
   upload: static/es5-bundled/service-worker.js
+  application_readable: true
   secure: always
   http_headers:
     Cache-Control: "private, max-age=0, must-revalidate"
     Service-Worker-Allowed: "/"
 
-- url: /20170806/es6-bundled/service-worker.js
+- url: /es6-bundled/service-worker.js
   static_files: static/es6-bundled/service-worker.js
   upload: static/es6-bundled/service-worker.js
+  application_readable: true
   secure: always
   http_headers:
     Cache-Control: "private, max-age=0, must-revalidate"
     Service-Worker-Allowed: "/"
 
-- url: /20170806/es6-unbundled/service-worker.js
+- url: /es6-unbundled/service-worker.js
   static_files: static/es6-unbundled/service-worker.js
   upload: static/es6-unbundled/service-worker.js
+  application_readable: true
   secure: always
   http_headers:
     Cache-Control: "private, max-age=0, must-revalidate"
     Service-Worker-Allowed: "/"  
 
+- url: /es5-bundled/
+  static_dir: static/es5-bundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=60, immutable"
+
+- url: /es6-bundled/
+  static_dir: static/es6-bundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=60, immutable"
+
+- url: /es6-unbundled/
+  static_dir: static/es6-unbundled/
+  application_readable: true
+  secure: always
+  http_headers:
+    Cache-Control: "public, max-age=60, immutable"
+
 - url: /.*
   script: _go_app
   secure: always
-
-env_variables:
-  STATIC_VERSION: 20170806

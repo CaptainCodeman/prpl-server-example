@@ -170,7 +170,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js', { 
               scope: Polymer.rootPath
-            });
+            })
+            .then(registration => registration.onupdatefound = () => {
+                var installingWorker = registration.installing;
+                installingWorker.onstatechange = function() {
+                  console.log('service worker:', installingWorker.state)
+                };
+              }
+            )
           }
         });
       }
